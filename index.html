@@ -116,6 +116,7 @@ details.week summary span{color:var(--muted);font-size:13.5px;text-align:right}
 .opt.wrong{border-color:var(--warn);background:var(--warn-bg)}
 .opt:disabled{cursor:default;opacity:1}
 .why{margin:10px 0 0;font-size:14.5px;padding:10px 12px;border-radius:8px;background:var(--paper)}
+pre.code{margin:0 0 10px;padding:10px 12px;border-radius:8px;background:var(--paper);border:1px solid var(--rule);font:14px/1.5 ui-monospace,"Cascadia Mono",Consolas,monospace;white-space:pre;overflow-x:auto}
 .why b{color:var(--good)} .why.miss b{color:var(--warn)}
 
 /* log */
@@ -184,7 +185,7 @@ footer .from{font-family:var(--display);font-size:16px;color:var(--ink);display:
 <script>
 /* ================= content ================= */
 const PLAN=[
- {cs:["Computer system: hardware, software, CPU and its parts","Memory and storage: units, primary and secondary","Number systems: binary, octal, hexadecimal and conversions","Character encoding: ASCII, ISCII, Unicode","Boolean logic: gates and truth tables","De Morgan's laws and logic circuits"],
+ {cs:["Computer system: hardware, software, CPU, registers and system buses","Memory and storage: units, primary and secondary","Number systems: binary, octal, hexadecimal and conversions","Character encoding: ASCII, ISCII, Unicode","Boolean logic: gates and truth tables","De Morgan's laws and logic circuits"],
   ped:"The learner: growth and development, Piaget, Vygotsky, Kohlberg",demo:"Binary to decimal conversion",test:"Half-paper: 60 questions in 60 minutes"},
  {cs:["Computational thinking, algorithms, flowcharts, pseudocode","Python basics: tokens, variables, data types","Operators, expressions and precedence","Decisions: if, elif, else","Loops: for, while, range","break, continue, nested loops and output tracing"],
   ped:"Learning theories: Thorndike, Pavlov, Skinner, Bandura, constructivism; motivation",demo:"The for loop in Python",test:"Half-paper: 60 questions in 60 minutes"},
@@ -196,7 +197,7 @@ const PLAN=[
   ped:"Assessment: formative and summative, tools, feedback, remedial teaching",demo:"Primary key and foreign key",test:"Half-paper: 60 questions in 60 minutes"},
  {cs:["Python and SQL connectivity","Networks: types and switching","Topologies and network devices","Protocols: TCP/IP, HTTP, FTP, SMTP, POP3","Web services: URL, DNS, HTML basics, cookies","Network security basics, and revision of the week"],
   ped:"NEP 2020, NCF, RTE Act, competency-based education",demo:"How data travels: packets and protocols",test:"Full paper 2: 120 questions in 2 hours"},
- {cs:["Operating systems: functions and types","Process and memory management basics","Cyber security: malware, firewalls, safe practice","Cyber ethics, IPR, IT Act","PGT-depth topics in the official PDF not yet covered","The two heaviest topics in your भूल-बही"],
+ {cs:["Operating systems: functions and types","Process and memory management basics","Cyber security: malware, firewalls, safe practice","Cyber ethics, IPR, IT Act","For the TGT paper: instruction formats, RISC and CISC; word processing, spreadsheets, presentations","The two heaviest topics in your भूल-बही"],
   ped:"Classroom management, ICT in teaching, communication, guidance",demo:"A topic from your weakest area",test:"Full paper 3: 120 questions in 2 hours"},
  {cs:["Revision from the भूल-बही: computer systems and Boolean logic","Revision: Python fundamentals and output tracing","Revision: files, exceptions, stack and queue","Revision: databases and SQL","Revision: networks and security","Light revision only; rest well"],
   ped:"Revision of all pedagogy MCQs",demo:"Two full mock lessons on unseen topics",test:"Full papers 4 and 5"}
@@ -224,7 +225,7 @@ const ROT=[
  ["Pedagogy and psychology","This week's theme, then 5 MCQs."],
  ["Reasoning and Numerical drill","10 questions: 5 reasoning, 5 numerical."],
  ["Pedagogy and psychology","Revise the week's notes aloud, as if teaching them."],
- ["English and GK drill","10 questions: 5 English, 5 current affairs."]
+ ["GK and computer literacy drill","10 questions: 5 current affairs, 5 on documents, spreadsheets, slides and the internet."]
 ];
 const WEEK0=[
  ["form","Submit the AEES form for PGT and TGT Computer Science","Closes 22 November 2026, 11:50 PM."],
@@ -248,33 +249,131 @@ const RUBRIC=[
 ];
 const STAGES=[[0,1,"Open","Greet, write topic and date, ask one question from daily life."],[1,6,"Explain","One idea, one worked example on the board."],[6,8,"Ask","Two questions to the class; a second example if needed."],[8,10,"Recap","Three lines on the board and one home task."]];
 const QS=[
- {s:"CS",t:"Number systems",q:"The decimal value of the binary number 101101 is",o:["43","45","47","53"],a:1,w:"32 + 8 + 4 + 1 = 45. Add the place values where the bit is 1."},
- {s:"CS",t:"Number systems",q:"The hexadecimal form of decimal 255 is",o:["EE","F0","FF","100"],a:2,w:"255 = 15 × 16 + 15, and 15 is written F, so FF."},
- {s:"CS",t:"Number systems",q:"The octal form of the binary number 110101 is",o:["53","56","65","66"],a:2,w:"Group in threes from the right: 110 = 6, 101 = 5, so 65."},
- {s:"CS",t:"Memory units",q:"A nibble is a group of",o:["2 bits","4 bits","8 bits","16 bits"],a:1,w:"A nibble is 4 bits, half a byte."},
- {s:"CS",t:"Boolean logic",q:"By De Morgan's law, (A + B)′ equals",o:["A′ + B′","A′ · B′","A · B","(A · B)′"],a:1,w:"The complement of a sum is the product of the complements."},
- {s:"CS",t:"Boolean logic",q:"Which gate gives output 1 only when its two inputs differ?",o:["AND","OR","XOR","NOR"],a:2,w:"XOR is the 'either, not both' gate."},
- {s:"CS",t:"Boolean logic",q:"Which pair are called universal gates?",o:["AND and OR","NAND and NOR","XOR and XNOR","NOT and OR"],a:1,w:"Any circuit can be built from NAND alone or NOR alone."},
- {s:"CS",t:"Boolean logic",q:"A + A · B simplifies to",o:["A","B","A · B","A + B"],a:0,w:"Absorption law: A(1 + B) = A · 1 = A."},
- {s:"CS",t:"Computer system",q:"Which memory loses its contents when power is switched off?",o:["ROM","RAM","Hard disk","Flash drive"],a:1,w:"RAM is volatile; the others retain data."},
- {s:"CS",t:"Computer system",q:"The part of the CPU that performs arithmetic and comparisons is the",o:["Control Unit","ALU","Register","Cache"],a:1,w:"ALU stands for Arithmetic and Logic Unit."},
- {s:"CS",t:"Encoding",q:"Standard ASCII is a 7-bit code. How many characters can it represent?",o:["64","128","256","512"],a:1,w:"2 to the power 7 is 128."},
- {s:"CS",t:"Encoding",q:"In UTF-8, one character is stored in",o:["exactly 1 byte","exactly 2 bytes","1 to 4 bytes","exactly 4 bytes"],a:2,w:"UTF-8 is variable-length: 1 to 4 bytes per character."},
- {s:"Pedagogy",t:"Piaget",q:"According to Piaget, a child of 7 to 11 years is in the",o:["Sensorimotor stage","Pre-operational stage","Concrete operational stage","Formal operational stage"],a:2,w:"Logical thinking about concrete objects appears from about 7 to 11."},
- {s:"Pedagogy",t:"Vygotsky",q:"The Zone of Proximal Development was proposed by",o:["Piaget","Vygotsky","Skinner","Bruner"],a:1,w:"ZPD is the gap between what a child does alone and with help. It is Vygotsky's idea."},
- {s:"Pedagogy",t:"Kohlberg",q:"A child obeys a rule only to avoid punishment. In Kohlberg's theory this is the",o:["Pre-conventional level","Conventional level","Post-conventional level","Formal level"],a:0,w:"Punishment and obedience orientation is stage 1, pre-conventional."},
- {s:"Pedagogy",t:"Vygotsky",q:"Scaffolding in teaching means",o:["Giving the full answer","Temporary support that is withdrawn gradually","Testing at the end of a unit","Grouping by ability"],a:1,w:"Support is given, then removed as the learner becomes independent."},
- {s:"Pedagogy",t:"Piaget",q:"Object permanence develops in the",o:["Sensorimotor stage","Pre-operational stage","Concrete operational stage","Formal operational stage"],a:0,w:"It forms during the first two years, the sensorimotor stage."},
- {s:"English",t:"Subject-verb agreement",q:"Find the error: 'Each of the students / have submitted / the assignment / on time.'",o:["Each of the students","have submitted","the assignment","on time"],a:1,w:"'Each' takes a singular verb: has submitted."},
- {s:"English",t:"Vocabulary",q:"Choose the word closest in meaning to 'meticulous'.",o:["Careless","Thorough","Hasty","Generous"],a:1,w:"Meticulous means very careful about detail."},
- {s:"English",t:"Prepositions",q:"She is good ___ mathematics.",o:["in","at","on","with"],a:1,w:"The fixed pair is 'good at'."},
- {s:"English",t:"Voice",q:"Passive of 'The teacher explained the lesson.'",o:["The lesson is explained by the teacher.","The lesson was explained by the teacher.","The lesson has explained the teacher.","The lesson was being explained by the teacher."],a:1,w:"Simple past active becomes was/were + past participle."},
- {s:"English",t:"Vocabulary",q:"Choose the opposite of 'scarce'.",o:["Rare","Abundant","Costly","Tiny"],a:1,w:"Scarce means in short supply; abundant is its opposite."},
- {s:"Hindi",t:"संधि",q:"'विद्यालय' का संधि-विच्छेद है",o:["विद्य + आलय","विद्या + आलय","विद्या + लय","विद् + आलय"],a:1,w:"आ + आ = आ, दीर्घ संधि: विद्या + आलय।"},
- {s:"Hindi",t:"विलोम",q:"'अंधकार' का विलोम शब्द है",o:["तिमिर","प्रकाश","रात्रि","छाया"],a:1,w:"तिमिर पर्यायवाची है; विलोम प्रकाश है।"},
- {s:"Hindi",t:"मुहावरे",q:"'आँखों का तारा' मुहावरे का अर्थ है",o:["बहुत चालाक","बहुत प्यारा","बहुत दूर","बहुत तेज़"],a:1,w:"जो बहुत प्रिय हो, वह आँखों का तारा।"},
- {s:"Hindi",t:"वर्तनी",q:"शुद्ध वर्तनी चुनिए",o:["आर्शीवाद","आशिर्वाद","आशीर्वाद","आशीरवाद"],a:2,w:"सही रूप है आशीर्वाद: आशीः + वाद।"},
- {s:"Hindi",t:"पर्यायवाची",q:"'कमल' का पर्यायवाची है",o:["जलद","जलज","जलधि","जलचर"],a:1,w:"जलज = जल में जन्मा, कमल। जलद बादल, जलधि समुद्र।"}
+ {"id": "w1-cs-01", "k": 1, "s": "CS", "t": "Number systems", "q": "The decimal value of the binary number 101101 is", "o": ["47", "45", "53", "43"], "a": 1, "w": "32 + 8 + 4 + 1 = 45. Add the place values where the bit is 1."},
+ {"id": "w1-cs-02", "k": 1, "s": "CS", "t": "Number systems", "q": "The hexadecimal form of decimal 255 is", "o": ["F0", "100", "EE", "FF"], "a": 3, "w": "255 = 15 × 16 + 15, and 15 is written F, so FF."},
+ {"id": "w1-cs-03", "k": 1, "s": "CS", "t": "Number systems", "q": "The octal form of the binary number 110101 is", "o": ["66", "53", "65", "56"], "a": 2, "w": "Group in threes from the right: 110 = 6, 101 = 5, so 65."},
+ {"id": "w1-cs-04", "k": 1, "s": "CS", "t": "Number systems", "q": "The 8-bit two's complement of 00101100 is", "o": ["10101100", "11010100", "11010101", "11010011"], "a": 1, "w": "Invert every bit to get 11010011, then add 1: 11010100."},
+ {"id": "w1-cs-05", "k": 1, "s": "CS", "t": "Number systems", "q": "The range of an 8-bit signed number in two's complement is", "o": ["−128 to +127", "0 to 255", "−127 to +127", "−128 to +128"], "a": 0, "w": "One pattern is spent on zero, so the negative side reaches one further: −128 to +127."},
+ {"id": "w1-cs-06", "k": 1, "s": "CS", "t": "Number systems", "q": "(2F)₁₆ + (15)₁₆ equals", "o": ["(45)₁₆", "(3A)₁₆", "(4E)₁₆", "(44)₁₆"], "a": 3, "w": "F + 5 = 20 in decimal = 14 in hex: write 4, carry 1. Then 2 + 1 + 1 = 4. Answer 44."},
+ {"id": "w1-cs-07", "k": 1, "s": "CS", "t": "Number systems", "q": "The binary form of decimal 0.625 is", "o": ["0.111", "0.011", "0.101", "0.110"], "a": 2, "w": "0.625 = 1/2 + 1/8, so the bits after the point are 1, 0, 1."},
+ {"id": "w1-cs-08", "k": 1, "s": "CS", "t": "Memory units", "q": "A nibble is a group of", "o": ["4 bits", "8 bits", "16 bits", "2 bits"], "a": 0, "w": "A nibble is 4 bits, half a byte."},
+ {"id": "w1-cs-09", "k": 1, "s": "CS", "t": "Memory units", "q": "2 GB of memory equals how many bytes?", "o": ["2²⁰", "2³¹", "2³⁰", "2³²"], "a": 1, "w": "1 GB = 2³⁰ bytes, so 2 GB = 2 × 2³⁰ = 2³¹."},
+ {"id": "w1-cs-10", "k": 1, "s": "CS", "t": "Boolean logic", "q": "By De Morgan's law, (A + B)′ equals", "o": ["(A · B)′", "A · B", "A′ · B′", "A′ + B′"], "a": 2, "w": "The complement of a sum is the product of the complements."},
+ {"id": "w1-cs-11", "k": 1, "s": "CS", "t": "Boolean logic", "q": "Which gate gives output 1 only when its two inputs differ?", "o": ["NOR", "AND", "OR", "XOR"], "a": 3, "w": "XOR is the 'either, not both' gate."},
+ {"id": "w1-cs-12", "k": 1, "s": "CS", "t": "Boolean logic", "q": "Which pair are called universal gates?", "o": ["AND and OR", "XOR and XNOR", "NAND and NOR", "NOT and OR"], "a": 2, "w": "Any circuit can be built from NAND alone or NOR alone."},
+ {"id": "w1-cs-13", "k": 1, "s": "CS", "t": "Boolean logic", "q": "A + A · B simplifies to", "o": ["A · B", "A", "A + B", "B"], "a": 1, "w": "Absorption law: A(1 + B) = A · 1 = A."},
+ {"id": "w1-cs-14", "k": 1, "s": "CS", "t": "Boolean logic", "q": "The expression for A XOR B is", "o": ["(A + B)′", "A′B + AB′", "AB + A′B′", "A′ + B′"], "a": 1, "w": "XOR is 1 when exactly one input is 1: A′B or AB′. The option AB + A′B′ is XNOR."},
+ {"id": "w1-cs-15", "k": 1, "s": "CS", "t": "Boolean logic", "q": "The minimum number of 2-input NAND gates needed to build an OR gate is", "o": ["3", "4", "1", "2"], "a": 0, "w": "Two NANDs invert A and B; a third NAND of A′ and B′ gives A + B."},
+ {"id": "w1-cs-16", "k": 1, "s": "CS", "t": "Boolean logic", "q": "The complement of A·B + C is", "o": ["A′·B′·C′", "(A′ + B′) · C′", "A′·B′ + C′", "(A′ + B′) + C′"], "a": 1, "w": "Apply De Morgan twice: (AB + C)′ = (AB)′ · C′ = (A′ + B′) · C′."},
+ {"id": "w1-cs-17", "k": 1, "s": "CS", "t": "Boolean logic", "q": "A truth table for 4 input variables has how many rows?", "o": ["8", "32", "4", "16"], "a": 3, "w": "Each variable doubles the rows: 2⁴ = 16."},
+ {"id": "w1-cs-18", "k": 1, "s": "CS", "t": "Computer system", "q": "Which memory loses its contents when power is switched off?", "o": ["Flash drive", "Hard disk", "RAM", "ROM"], "a": 2, "w": "RAM is volatile; the others retain data."},
+ {"id": "w1-cs-19", "k": 1, "s": "CS", "t": "Computer system", "q": "The part of the CPU that performs arithmetic and comparisons is the", "o": ["ALU", "Control Unit", "Register", "Cache"], "a": 0, "w": "ALU stands for Arithmetic and Logic Unit."},
+ {"id": "w1-cs-20", "k": 1, "s": "CS", "t": "Computer system", "q": "Cache memory is placed between", "o": ["the CPU and main memory", "the CPU and the keyboard", "ROM and the hard disk", "main memory and the hard disk"], "a": 0, "w": "Cache holds what the CPU needs next, so it sits between the CPU and RAM."},
+ {"id": "w1-cs-21", "k": 1, "s": "CS", "t": "Architecture (TGT)", "q": "Which register holds the address of the next instruction to be fetched?", "o": ["Accumulator", "Instruction Register", "Program Counter", "Memory Data Register"], "a": 2, "w": "The Program Counter points to the next instruction; the Instruction Register holds the current one."},
+ {"id": "w1-cs-22", "k": 1, "s": "CS", "t": "Architecture (TGT)", "q": "Which statement describes a RISC processor?", "o": ["Many complex, variable-length instructions", "Many addressing modes and microcoded control", "Instructions that take many cycles each", "Few, simple, fixed-length instructions"], "a": 3, "w": "RISC keeps instructions few, simple and of one length; the other three describe CISC."},
+ {"id": "w1-cs-23", "k": 1, "s": "CS", "t": "Architecture (TGT)", "q": "The address bus of a computer is", "o": ["unidirectional, from the CPU to memory", "bidirectional, between CPU and memory", "used only for control signals", "unidirectional, from memory to the CPU"], "a": 0, "w": "Only the CPU sends addresses, so the address bus runs one way. The data bus is bidirectional."},
+ {"id": "w1-cs-24", "k": 1, "s": "CS", "t": "Architecture (TGT)", "q": "An instruction that names no operand address, as on a stack machine, is called", "o": ["a zero-address instruction", "an immediate instruction", "a two-address instruction", "a one-address instruction"], "a": 0, "w": "A stack machine takes operands from the top of the stack, so the instruction carries no address."},
+ {"id": "w1-cs-25", "k": 1, "s": "CS", "t": "Encoding", "q": "Standard ASCII is a 7-bit code. How many characters can it represent?", "o": ["512", "64", "128", "256"], "a": 2, "w": "2 to the power 7 is 128."},
+ {"id": "w1-cs-26", "k": 1, "s": "CS", "t": "Encoding", "q": "In UTF-8, one character is stored in", "o": ["exactly 4 bytes", "exactly 1 byte", "exactly 2 bytes", "1 to 4 bytes"], "a": 3, "w": "UTF-8 is variable-length: 1 to 4 bytes per character."},
+ {"id": "w1-cs-27", "k": 1, "s": "CS", "t": "Encoding", "q": "ISCII, the code for Indian scripts, uses", "o": ["32 bits", "8 bits", "7 bits", "16 bits"], "a": 1, "w": "ISCII is an 8-bit code: the lower half is ASCII, the upper half carries Indian scripts."},
+ {"id": "w1-ped-01", "k": 1, "s": "Pedagogy", "t": "Piaget", "q": "According to Piaget, a child of 7 to 11 years is in the", "o": ["Pre-operational stage", "Formal operational stage", "Concrete operational stage", "Sensorimotor stage"], "a": 2, "w": "Logical thinking about concrete objects appears from about 7 to 11."},
+ {"id": "w1-ped-02", "k": 1, "s": "Pedagogy", "t": "Piaget", "q": "Object permanence develops in the", "o": ["Pre-operational stage", "Sensorimotor stage", "Formal operational stage", "Concrete operational stage"], "a": 1, "w": "It forms during the first two years, the sensorimotor stage."},
+ {"id": "w1-ped-03", "k": 1, "s": "Pedagogy", "t": "Piaget", "q": "A child calls a zebra 'a horse' because it fits what she already knows. Piaget calls this", "o": ["accommodation", "conservation", "equilibration", "assimilation"], "a": 3, "w": "Assimilation fits the new into an existing schema; accommodation changes the schema."},
+ {"id": "w1-ped-04", "k": 1, "s": "Pedagogy", "t": "Piaget", "q": "A child understands that water poured into a taller glass is still the same amount. This ability is", "o": ["animism", "conservation", "egocentrism", "centration"], "a": 1, "w": "Conservation appears in the concrete operational stage."},
+ {"id": "w1-ped-05", "k": 1, "s": "Pedagogy", "t": "Vygotsky", "q": "The Zone of Proximal Development was proposed by", "o": ["Vygotsky", "Skinner", "Piaget", "Bruner"], "a": 0, "w": "ZPD is the gap between what a child does alone and with help. It is Vygotsky's idea."},
+ {"id": "w1-ped-06", "k": 1, "s": "Pedagogy", "t": "Vygotsky", "q": "Scaffolding in teaching means", "o": ["Grouping by ability", "Testing at the end of a unit", "Temporary support that is withdrawn gradually", "Giving the full answer"], "a": 2, "w": "Support is given, then removed as the learner becomes independent."},
+ {"id": "w1-ped-07", "k": 1, "s": "Pedagogy", "t": "Vygotsky", "q": "For Vygotsky, a child talking to herself while solving a puzzle is", "o": ["using private speech to guide her thinking", "avoiding the task", "imitating the teacher", "showing egocentric immaturity"], "a": 0, "w": "Vygotsky saw private speech as a tool for self-regulation; Piaget read it as egocentric."},
+ {"id": "w1-ped-08", "k": 1, "s": "Pedagogy", "t": "Kohlberg", "q": "A child obeys a rule only to avoid punishment. In Kohlberg's theory this is the", "o": ["Formal level", "Conventional level", "Post-conventional level", "Pre-conventional level"], "a": 3, "w": "Punishment and obedience orientation is stage 1, pre-conventional."},
+ {"id": "w1-ped-09", "k": 1, "s": "Pedagogy", "t": "Kohlberg", "q": "'I follow the rule so that my teacher thinks I am a good girl.' This reasoning belongs to the", "o": ["Conventional level", "Sensorimotor stage", "Post-conventional level", "Pre-conventional level"], "a": 0, "w": "Seeking approval, the 'good boy, nice girl' stage, is conventional."},
+ {"id": "w1-ped-10", "k": 1, "s": "Pedagogy", "t": "Development", "q": "Development that proceeds from the head downward to the feet is called", "o": ["proximodistal", "differential", "sequential", "cephalocaudal"], "a": 3, "w": "Cephalocaudal means head to tail; proximodistal means centre outward."},
+ {"id": "w1-eng-01", "k": 1, "s": "English", "t": "Subject-verb agreement", "q": "Find the error: 'Each of the students / have submitted / the assignment / on time.'", "o": ["Each of the students", "have submitted", "the assignment", "on time"], "a": 1, "w": "'Each' takes a singular verb: has submitted."},
+ {"id": "w1-eng-02", "k": 1, "s": "English", "t": "Vocabulary", "q": "Choose the word closest in meaning to 'meticulous'.", "o": ["Generous", "Hasty", "Thorough", "Careless"], "a": 2, "w": "Meticulous means very careful about detail."},
+ {"id": "w1-eng-03", "k": 1, "s": "English", "t": "Prepositions", "q": "She is good ___ mathematics.", "o": ["with", "on", "in", "at"], "a": 3, "w": "The fixed pair is 'good at'."},
+ {"id": "w1-eng-04", "k": 1, "s": "English", "t": "Voice", "q": "Passive of 'The teacher explained the lesson.'", "o": ["The lesson was explained by the teacher.", "The lesson has explained the teacher.", "The lesson is explained by the teacher.", "The lesson was being explained by the teacher."], "a": 0, "w": "Simple past active becomes was/were + past participle."},
+ {"id": "w1-eng-05", "k": 1, "s": "English", "t": "Vocabulary", "q": "Choose the opposite of 'scarce'.", "o": ["Rare", "Abundant", "Tiny", "Costly"], "a": 1, "w": "Scarce means in short supply; abundant is its opposite."},
+ {"id": "w1-hin-01", "k": 1, "s": "Hindi", "t": "संधि", "q": "'विद्यालय' का संधि-विच्छेद है", "o": ["विद् + आलय", "विद्य + आलय", "विद्या + आलय", "विद्या + लय"], "a": 2, "w": "आ + आ = आ, दीर्घ संधि: विद्या + आलय।"},
+ {"id": "w1-hin-02", "k": 1, "s": "Hindi", "t": "विलोम", "q": "'अंधकार' का विलोम शब्द है", "o": ["प्रकाश", "रात्रि", "छाया", "तिमिर"], "a": 0, "w": "तिमिर पर्यायवाची है; विलोम प्रकाश है।"},
+ {"id": "w1-hin-03", "k": 1, "s": "Hindi", "t": "मुहावरे", "q": "'आँखों का तारा' मुहावरे का अर्थ है", "o": ["बहुत तेज़", "बहुत प्यारा", "बहुत दूर", "बहुत चालाक"], "a": 1, "w": "जो बहुत प्रिय हो, वह आँखों का तारा।"},
+ {"id": "w1-hin-04", "k": 1, "s": "Hindi", "t": "वर्तनी", "q": "शुद्ध वर्तनी चुनिए", "o": ["आर्शीवाद", "आशिर्वाद", "आशीरवाद", "आशीर्वाद"], "a": 3, "w": "सही रूप है आशीर्वाद: आशीः + वाद।"},
+ {"id": "w1-hin-05", "k": 1, "s": "Hindi", "t": "पर्यायवाची", "q": "'कमल' का पर्यायवाची है", "o": ["जलचर", "जलज", "जलद", "जलधि"], "a": 1, "w": "जलज = जल में जन्मा, कमल। जलद बादल, जलधि समुद्र।"},
+ {"id": "w1-rea-01", "k": 1, "s": "Reasoning", "t": "Series", "q": "3, 8, 15, 24, 35, ?", "o": ["47", "46", "49", "48"], "a": 3, "w": "Each term is a square minus 1: 4, 9, 16, 25, 36, then 49 − 1 = 48."},
+ {"id": "w1-rea-02", "k": 1, "s": "Reasoning", "t": "Coding", "q": "If CAT is written as DBU, then DOG is written as", "o": ["DPH", "EPG", "EPH", "FPH"], "a": 2, "w": "Each letter moves one step forward: D→E, O→P, G→H."},
+ {"id": "w1-rea-03", "k": 1, "s": "Reasoning", "t": "Direction", "q": "A man walks 5 km north, turns right and walks 3 km, turns right again and walks 5 km. Where is he from the start?", "o": ["3 km to the east", "At the starting point", "13 km to the east", "3 km to the west"], "a": 0, "w": "North and south cancel out; only the 3 km to the east remains."},
+ {"id": "w1-rea-04", "k": 1, "s": "Reasoning", "t": "Blood relations", "q": "Pointing to a boy, Rina says, 'He is the son of my mother's only daughter.' The boy is Rina's", "o": ["cousin", "son", "nephew", "brother"], "a": 1, "w": "Her mother's only daughter is Rina herself, so the boy is her son."},
+ {"id": "w1-rea-05", "k": 1, "s": "Reasoning", "t": "Odd one out", "q": "Find the odd one out: 27, 64, 125, 144", "o": ["64", "125", "144", "27"], "a": 2, "w": "27, 64 and 125 are cubes of 3, 4 and 5; 144 is a square, not a cube."},
+ {"id": "w1-num-01", "k": 1, "s": "Numerical", "t": "Percentage", "q": "15% of 240 is", "o": ["24", "32", "40", "36"], "a": 3, "w": "10% is 24 and 5% is 12; together 36."},
+ {"id": "w1-num-02", "k": 1, "s": "Numerical", "t": "Ratio", "q": "Two numbers are in the ratio 3 : 5 and their sum is 64. The larger number is", "o": ["24", "45", "35", "40"], "a": 3, "w": "8 parts make 64, so one part is 8; the larger is 5 × 8 = 40."},
+ {"id": "w1-num-03", "k": 1, "s": "Numerical", "t": "Average", "q": "The average of 5 numbers is 18. When one number is removed, the average of the rest is 16. The removed number is", "o": ["26", "20", "28", "24"], "a": 0, "w": "Total 90; the remaining four total 64; 90 − 64 = 26."},
+ {"id": "w1-num-04", "k": 1, "s": "Numerical", "t": "Time and work", "q": "A finishes a job in 12 days and B in 6 days. Working together they finish it in", "o": ["9 days", "4 days", "18 days", "3 days"], "a": 1, "w": "In one day they do 1/12 + 1/6 = 1/4 of the job, so 4 days."},
+ {"id": "w1-num-05", "k": 1, "s": "Numerical", "t": "Profit and loss", "q": "An article bought for ₹400 is sold for ₹460. The profit per cent is", "o": ["11.5%", "60%", "15%", "13%"], "a": 2, "w": "Profit 60 on a cost of 400: 60/400 = 15%."},
+ {"id": "w1-gk-01", "k": 1, "s": "GK", "t": "Education policy", "q": "The school structure proposed by NEP 2020 is", "o": ["5 + 3 + 2 + 2", "4 + 4 + 4", "5 + 3 + 3 + 4", "10 + 2"], "a": 2, "w": "Foundational 5, Preparatory 3, Middle 3, Secondary 4."},
+ {"id": "w1-gk-02", "k": 1, "s": "GK", "t": "Constitution", "q": "Which Article of the Constitution makes education a fundamental right for children of 6 to 14 years?", "o": ["Article 51A", "Article 21A", "Article 14", "Article 45"], "a": 1, "w": "Article 21A was inserted by the 86th Amendment, 2002."},
+ {"id": "w1-gk-03", "k": 1, "s": "GK", "t": "AEES", "q": "The Atomic Energy Education Society works under the", "o": ["Department of Atomic Energy", "Ministry of Education", "Department of Space", "Ministry of Defence"], "a": 0, "w": "AEES is an autonomous body of the Department of Atomic Energy."},
+ {"id": "w1-gk-04", "k": 1, "s": "GK", "t": "Science in India", "q": "Who is regarded as the father of India's nuclear programme?", "o": ["C. V. Raman", "Vikram Sarabhai", "A. P. J. Abdul Kalam", "Homi J. Bhabha"], "a": 3, "w": "Homi Bhabha founded the programme; Sarabhai is linked with the space programme."},
+ {"id": "w1-gk-05", "k": 1, "s": "GK", "t": "Days", "q": "National Education Day is observed on", "o": ["11 November", "14 November", "5 September", "28 February"], "a": 0, "w": "It marks the birth anniversary of Maulana Abul Kalam Azad."},
+ {"id": "w1-lit-01", "k": 1, "s": "Literacy", "t": "Shortcuts", "q": "The keyboard shortcut to undo the last action is", "o": ["Ctrl + Y", "Ctrl + X", "Ctrl + U", "Ctrl + Z"], "a": 3, "w": "Ctrl + Z undoes; Ctrl + Y redoes."},
+ {"id": "w1-lit-02", "k": 1, "s": "Literacy", "t": "Spreadsheet", "q": "In a spreadsheet, the reference $A$1 is", "o": ["a circular reference", "an absolute reference", "a relative reference", "a mixed reference"], "a": 1, "w": "Both the column and the row are locked by $, so it does not change when copied."},
+ {"id": "w1-lit-03", "k": 1, "s": "Literacy", "t": "Presentation", "q": "The default file extension of a PowerPoint presentation is", "o": [".docx", ".pptx", ".xlsx", ".ppsm"], "a": 1, "w": ".pptx is the presentation; .xlsx is a workbook and .docx a document."},
+ {"id": "w1-lit-04", "k": 1, "s": "Literacy", "t": "Email", "q": "In an email, the addresses placed in BCC are", "o": ["blocked from replying", "shown to every recipient", "hidden from the other recipients", "sent a copy one day later"], "a": 2, "w": "BCC is blind carbon copy: the others cannot see those addresses."},
+ {"id": "w1-lit-05", "k": 1, "s": "Literacy", "t": "Word processing", "q": "Sending one letter to many people with each name filled in automatically is done by", "o": ["mail merge", "autocorrect", "track changes", "macros"], "a": 0, "w": "Mail merge joins one letter with a list of names and addresses."},
+ {"id": "w2-cs-01", "k": 2, "s": "CS", "t": "Operators", "q": "What is printed?", "c": "print(7 // 2, -7 // 2)", "o": ["3 -3", "3 -4", "3.5 -3.5", "4 -4"], "a": 1, "w": "// floors toward minus infinity: 7//2 is 3 and -7//2 is -4, not -3."},
+ {"id": "w2-cs-02", "k": 2, "s": "CS", "t": "Operators", "q": "What is printed?", "c": "print(2 ** 3 ** 2)", "o": ["64", "72", "256", "512"], "a": 3, "w": "** groups from the right: 3**2 is 9, then 2**9 is 512."},
+ {"id": "w2-cs-03", "k": 2, "s": "CS", "t": "Operators", "q": "What is printed?", "c": "print(10 % 3 * 2)", "o": ["0", "2", "1", "4"], "a": 1, "w": "% and * have the same precedence and run left to right: (10 % 3) * 2 = 1 * 2."},
+ {"id": "w2-cs-04", "k": 2, "s": "CS", "t": "Operators", "q": "What is printed?", "c": "print(not True or True and False)", "o": ["True", "None", "Error", "False"], "a": 3, "w": "not binds first, then and, then or: (not True) or (True and False) = False or False."},
+ {"id": "w2-cs-05", "k": 2, "s": "CS", "t": "Operators", "q": "What is printed?", "c": "print(1 < 2 < 1)", "o": ["True", "1", "False", "Error"], "a": 2, "w": "A chained comparison means (1 < 2) and (2 < 1); the second part is False."},
+ {"id": "w2-cs-06", "k": 2, "s": "CS", "t": "Operators", "q": "What is printed?", "c": "print(round(2.5), round(3.5))", "o": ["2 4", "3 4", "2 3", "3 3"], "a": 0, "w": "Python rounds a .5 to the nearest even number: 2.5 → 2 and 3.5 → 4."},
+ {"id": "w2-cs-07", "k": 2, "s": "CS", "t": "Data types", "q": "What is printed?", "c": "print(type(3 / 1))", "o": ["<class 'str'>", "<class 'int'>", "<class 'number'>", "<class 'float'>"], "a": 3, "w": "The / operator always returns a float, even when the division is exact: 3.0."},
+ {"id": "w2-cs-08", "k": 2, "s": "CS", "t": "Data types", "q": "What is printed?", "c": "print(bool(\"False\"))", "o": ["0", "False", "True", "Error"], "a": 2, "w": "Any non-empty string is true, whatever it spells."},
+ {"id": "w2-cs-09", "k": 2, "s": "CS", "t": "Data types", "q": "What is printed?", "c": "print(int(\"12\") + float(\"3\"))", "o": ["15.0", "123", "Error", "15"], "a": 0, "w": "int plus float gives a float: 12 + 3.0 = 15.0."},
+ {"id": "w2-cs-10", "k": 2, "s": "CS", "t": "Data types", "q": "What is printed?", "c": "print(\"a\" < \"B\")", "o": ["False", "Error", "True", "None"], "a": 0, "w": "Strings compare by code: 'a' is 97 and 'B' is 66, so 97 < 66 is False."},
+ {"id": "w2-cs-11", "k": 2, "s": "CS", "t": "Data types", "q": "Which of these Python types is mutable?", "o": ["int", "str", "list", "tuple"], "a": 2, "w": "A list can be changed in place; the other three cannot."},
+ {"id": "w2-cs-12", "k": 2, "s": "CS", "t": "Tokens", "q": "Which is a valid Python identifier?", "o": ["class", "_total2", "2total", "total-2"], "a": 1, "w": "A name may begin with a letter or underscore; it cannot begin with a digit, hold a hyphen, or be a keyword."},
+ {"id": "w2-cs-13", "k": 2, "s": "CS", "t": "Tokens", "q": "Which of these is NOT a Python keyword?", "o": ["pass", "lambda", "nonlocal", "integer"], "a": 3, "w": "The type is written int, and even int is a built-in name, not a keyword."},
+ {"id": "w2-cs-14", "k": 2, "s": "CS", "t": "Tokens", "q": "Python is called dynamically typed because", "o": ["types are checked before the program runs", "a name takes the type of the value given to it at run time", "a variable can hold only one type for ever", "every variable must be declared with a type"], "a": 1, "w": "No declaration is needed; the same name can later refer to a value of another type."},
+ {"id": "w2-cs-15", "k": 2, "s": "CS", "t": "Variables", "q": "What is printed?", "c": "a, b = 3, 4\na, b = b, a + b\nprint(a, b)", "o": ["4 3", "4 8", "4 7", "7 4"], "a": 2, "w": "The right side is worked out first with the old values: (4, 3 + 4), then both names are set."},
+ {"id": "w2-cs-16", "k": 2, "s": "CS", "t": "Loops", "q": "What is printed?", "c": "for i in range(2, 10, 3):\n    print(i, end=\" \")", "o": ["2 5 8", "3 6 9", "2 5 8 11", "2 4 6 8"], "a": 0, "w": "Start at 2, step 3, stop before 10: 2, 5, 8."},
+ {"id": "w2-cs-17", "k": 2, "s": "CS", "t": "Loops", "q": "What is printed?", "c": "print(len(list(range(5, 0, -2))))", "o": ["2", "5", "0", "3"], "a": 3, "w": "The range gives 5, 3, 1 and stops before 0: three numbers."},
+ {"id": "w2-cs-18", "k": 2, "s": "CS", "t": "Loops", "q": "What is printed?", "c": "x = 5\nwhile x > 0:\n    x -= 2\nprint(x)", "o": ["-2", "-1", "1", "0"], "a": 1, "w": "x goes 5 → 3 → 1 → -1; the loop ends only after x has dropped below 1."},
+ {"id": "w2-cs-19", "k": 2, "s": "CS", "t": "Loops", "q": "What is printed?", "c": "for i in range(3):\n    if i == 5:\n        break\nelse:\n    print(\"done\")", "o": ["done", "nothing", "0 1 2", "Error"], "a": 0, "w": "The else of a for loop runs when the loop ends without a break; i never equals 5."},
+ {"id": "w2-cs-20", "k": 2, "s": "CS", "t": "Loops", "q": "What is printed?", "c": "s = 0\nfor i in range(1, 5):\n    if i % 2:\n        continue\n    s += i\nprint(s)", "o": ["10", "6", "4", "2"], "a": 1, "w": "continue skips the odd numbers, so only 2 and 4 are added."},
+ {"id": "w2-cs-21", "k": 2, "s": "CS", "t": "Loops", "q": "What is printed?", "c": "c = 0\nfor i in range(3):\n    for j in range(i):\n        c += 1\nprint(c)", "o": ["0", "9", "3", "6"], "a": 2, "w": "The inner loop runs 0, 1 and 2 times as i goes 0, 1, 2: total 3."},
+ {"id": "w2-cs-22", "k": 2, "s": "CS", "t": "Loops", "q": "How many times does the body of this loop run?", "c": "for i in range(1, 10, 2):", "o": ["5", "9", "4", "10"], "a": 0, "w": "i takes 1, 3, 5, 7, 9: five values."},
+ {"id": "w2-cs-23", "k": 2, "s": "CS", "t": "Loops", "q": "Inside nested loops, a break statement", "o": ["skips to the next iteration", "leaves all the loops at once", "stops the program", "leaves only the innermost loop it is in"], "a": 3, "w": "break ends one loop, the nearest enclosing one; the outer loop carries on."},
+ {"id": "w2-cs-24", "k": 2, "s": "CS", "t": "Algorithms", "q": "In a flowchart, a decision is drawn inside a", "o": ["oval", "parallelogram", "diamond", "rectangle"], "a": 2, "w": "Rectangle is a process, parallelogram is input or output, oval is start or stop."},
+ {"id": "w2-cs-25", "k": 2, "s": "CS", "t": "Algorithms", "q": "'An algorithm must end after a limited number of steps.' This property is called", "o": ["definiteness", "effectiveness", "finiteness", "generality"], "a": 2, "w": "Definiteness means each step is unambiguous; finiteness means it terminates."},
+ {"id": "w2-ped-01", "k": 2, "s": "Pedagogy", "t": "Thorndike", "q": "The Law of Effect was given by", "o": ["Kohler", "Skinner", "Pavlov", "Thorndike"], "a": 3, "w": "Thorndike: a response followed by satisfaction is strengthened."},
+ {"id": "w2-ped-02", "k": 2, "s": "Pedagogy", "t": "Pavlov", "q": "In Pavlov's experiment, after training, the bell is the", "o": ["unconditioned response", "conditioned response", "conditioned stimulus", "unconditioned stimulus"], "a": 2, "w": "Food is the unconditioned stimulus; the bell becomes conditioned by pairing."},
+ {"id": "w2-ped-03", "k": 2, "s": "Pedagogy", "t": "Skinner", "q": "A teacher stops giving extra homework when the class works well. To increase good work she is using", "o": ["negative reinforcement", "extinction", "punishment", "positive reinforcement"], "a": 0, "w": "Removing something unpleasant to strengthen behaviour is negative reinforcement, not punishment."},
+ {"id": "w2-ped-04", "k": 2, "s": "Pedagogy", "t": "Bandura", "q": "Bandura's Bobo doll experiment showed that children learn through", "o": ["trial and error", "observation and imitation", "conditioning by reward only", "insight"], "a": 1, "w": "Children copied the aggression they had watched: observational learning."},
+ {"id": "w2-ped-05", "k": 2, "s": "Pedagogy", "t": "Constructivism", "q": "In a constructivist classroom, the learner", "o": ["is ranked by speed of recall", "builds knowledge actively from experience", "memorises by drill", "receives knowledge passively from the teacher"], "a": 1, "w": "Constructivism holds that knowledge is constructed by the learner, not transmitted."},
+ {"id": "w2-ped-06", "k": 2, "s": "Pedagogy", "t": "Motivation", "q": "A student reads about robots at home simply because she is curious. This is", "o": ["negative reinforcement", "achievement anxiety", "extrinsic motivation", "intrinsic motivation"], "a": 3, "w": "The reward is the activity itself, so the motivation is intrinsic."},
+ {"id": "w2-ped-07", "k": 2, "s": "Pedagogy", "t": "Motivation", "q": "The highest need in Maslow's original hierarchy is", "o": ["self-actualisation", "safety", "belongingness", "esteem"], "a": 0, "w": "The five levels rise from physiological needs to self-actualisation."},
+ {"id": "w2-eng-01", "k": 2, "s": "English", "t": "Subject-verb agreement", "q": "Neither the teacher nor the students ___ present.", "o": ["has been", "is", "were", "was"], "a": 2, "w": "With neither…nor, the verb agrees with the nearer subject: students were."},
+ {"id": "w2-eng-02", "k": 2, "s": "English", "t": "Reported speech", "q": "He said, 'I am busy.' In reported speech:", "o": ["He said that he was busy.", "He said that I am busy.", "He said that he is busy.", "He told that he was busy."], "a": 0, "w": "The pronoun shifts to he and the tense moves back to was."},
+ {"id": "w2-eng-03", "k": 2, "s": "English", "t": "Vocabulary", "q": "Choose the word closest in meaning to 'candid'.", "o": ["Careful", "Secretive", "Sweet", "Frank"], "a": 3, "w": "Candid means open and honest in speech."},
+ {"id": "w2-eng-04", "k": 2, "s": "English", "t": "Articles", "q": "She is ___ honest officer.", "o": ["a", "no article", "an", "the"], "a": 2, "w": "'Honest' begins with a vowel sound, since the h is silent."},
+ {"id": "w2-eng-05", "k": 2, "s": "English", "t": "Idioms", "q": "'To burn the midnight oil' means", "o": ["to waste fuel", "to work late into the night", "to sleep early", "to be very angry"], "a": 1, "w": "The phrase comes from studying by lamplight."},
+ {"id": "w2-hin-01", "k": 2, "s": "Hindi", "t": "संधि", "q": "'परोपकार' का संधि-विच्छेद है", "o": ["पर + ओपकार", "परा + उपकार", "परो + पकार", "पर + उपकार"], "a": 3, "w": "अ + उ = ओ, गुण संधि: पर + उपकार।"},
+ {"id": "w2-hin-02", "k": 2, "s": "Hindi", "t": "समास", "q": "'यथाशक्ति' में कौन-सा समास है?", "o": ["द्वंद्व", "तत्पुरुष", "अव्ययीभाव", "बहुव्रीहि"], "a": 2, "w": "पहला पद 'यथा' अव्यय है और प्रधान है, इसलिए अव्ययीभाव।"},
+ {"id": "w2-hin-03", "k": 2, "s": "Hindi", "t": "मुहावरे", "q": "'नौ दो ग्यारह होना' का अर्थ है", "o": ["भाग जाना", "बहुत ख़ुश होना", "हिसाब मिलाना", "गिनती करना"], "a": 0, "w": "चुपचाप भाग जाना।"},
+ {"id": "w2-hin-04", "k": 2, "s": "Hindi", "t": "तत्सम-तद्भव", "q": "'आग' का तत्सम रूप है", "o": ["अंगार", "अगन", "आगि", "अग्नि"], "a": 3, "w": "तद्भव 'आग' संस्कृत 'अग्नि' से बना है।"},
+ {"id": "w2-hin-05", "k": 2, "s": "Hindi", "t": "पर्यायवाची", "q": "'पवन' का पर्यायवाची है", "o": ["अंबर", "समीर", "अनल", "सलिल"], "a": 1, "w": "अनल आग, सलिल जल और अंबर आकाश है।"},
+ {"id": "w2-rea-01", "k": 2, "s": "Reasoning", "t": "Series", "q": "2, 6, 12, 20, 30, ?", "o": ["42", "36", "44", "40"], "a": 0, "w": "The gaps grow by 2: 4, 6, 8, 10, then 12. 30 + 12 = 42."},
+ {"id": "w2-rea-02", "k": 2, "s": "Reasoning", "t": "Odd one out", "q": "Find the odd one out: RAM, ROM, Cache, Compiler", "o": ["RAM", "ROM", "Cache", "Compiler"], "a": 3, "w": "The first three are memory; a compiler is software."},
+ {"id": "w2-rea-03", "k": 2, "s": "Reasoning", "t": "Symbols", "q": "If '+' means '×' and '−' means '+', then 4 + 3 − 2 equals", "o": ["9", "14", "10", "5"], "a": 1, "w": "Read it as 4 × 3 + 2 = 14."},
+ {"id": "w2-rea-04", "k": 2, "s": "Reasoning", "t": "Ordering", "q": "A is taller than B. C is taller than A. D is shorter than B. Who is the tallest?", "o": ["B", "D", "C", "A"], "a": 2, "w": "The order is C, A, B, D."},
+ {"id": "w2-rea-05", "k": 2, "s": "Reasoning", "t": "Calendar", "q": "If 1 January is a Monday, then 29 January of the same year is a", "o": ["Monday", "Sunday", "Wednesday", "Tuesday"], "a": 0, "w": "29 January is 28 days later, exactly four weeks."},
+ {"id": "w2-num-01", "k": 2, "s": "Numerical", "t": "Simple interest", "q": "The simple interest on ₹5,000 at 8% a year for 3 years is", "o": ["₹1,200", "₹1,500", "₹400", "₹1,000"], "a": 0, "w": "5000 × 8 × 3 / 100 = 1200."},
+ {"id": "w2-num-02", "k": 2, "s": "Numerical", "t": "Speed", "q": "54 km/h is the same as", "o": ["18 m/s", "150 m/s", "9 m/s", "15 m/s"], "a": 3, "w": "Multiply by 5/18: 54 × 5/18 = 15."},
+ {"id": "w2-num-03", "k": 2, "s": "Numerical", "t": "LCM", "q": "The LCM of 12, 18 and 24 is", "o": ["48", "72", "144", "36"], "a": 1, "w": "72 is the smallest number that all three divide."},
+ {"id": "w2-num-04", "k": 2, "s": "Numerical", "t": "Percentage", "q": "A number is increased by 20% and then decreased by 20%. The net change is", "o": ["a 2% decrease", "a 4% increase", "a 4% decrease", "no change"], "a": 2, "w": "100 → 120 → 96. The second 20% is taken on a larger number."},
+ {"id": "w2-num-05", "k": 2, "s": "Numerical", "t": "Mensuration", "q": "The area of a circle of radius 7 cm is (π = 22/7)", "o": ["44 cm²", "154 cm²", "308 cm²", "49 cm²"], "a": 1, "w": "πr² = 22/7 × 49 = 154. The option 44 is the circumference."},
+ {"id": "w2-gk-01", "k": 2, "s": "GK", "t": "Education", "q": "Who was the first Education Minister of independent India?", "o": ["Dr. S. Radhakrishnan", "Dr. Zakir Husain", "Maulana Abul Kalam Azad", "Dr. Rajendra Prasad"], "a": 2, "w": "Maulana Azad held the office from 1947 to 1958."},
+ {"id": "w2-gk-02", "k": 2, "s": "GK", "t": "Education", "q": "The Right to Education Act came into force on", "o": ["26 January 2009", "1 April 2002", "15 August 2010", "1 April 2010"], "a": 3, "w": "The Act was passed in 2009 and enforced from 1 April 2010."},
+ {"id": "w2-gk-03", "k": 2, "s": "GK", "t": "Education policy", "q": "The NIPUN Bharat mission is concerned with", "o": ["foundational literacy and numeracy", "higher education ranking", "digital universities", "teacher recruitment"], "a": 0, "w": "It aims at reading and basic arithmetic by the end of Grade 3."},
+ {"id": "w2-lit-01", "k": 2, "s": "Literacy", "t": "Spreadsheet", "q": "Which spreadsheet function counts only the cells that contain numbers?", "o": ["COUNTA", "LEN", "COUNT", "SUM"], "a": 2, "w": "COUNT counts numbers; COUNTA counts every non-empty cell."},
+ {"id": "w2-lit-02", "k": 2, "s": "Literacy", "t": "Shortcuts", "q": "Ctrl + F in a document is used to", "o": ["save as a file", "format text", "open full screen", "find text"], "a": 3, "w": "F is for Find."},
+ {"id": "w2-lit-03", "k": 2, "s": "Literacy", "t": "Internet", "q": "In 'https', the letter s stands for", "o": ["server", "secure", "site", "standard"], "a": 1, "w": "HTTPS is HTTP over an encrypted connection."}
 ];
 
 /* ================= state ================= */
@@ -282,6 +381,7 @@ const KEY="board-ready-v1";
 let storeOK=true;
 let S={start:"2026-11-23",ticks:{},w0:{},log:[],scores:[],ans:{},rubric:{},filter:"CS"};
 try{const raw=localStorage.getItem(KEY);if(raw)S=Object.assign(S,JSON.parse(raw));}catch(e){storeOK=false;}
+Object.keys(S.ans).forEach(k=>{if(/^\d+$/.test(k))delete S.ans[k];});S.log.forEach(e=>{if(typeof e.q==="number")delete e.q;});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){storeOK=false;}}
 
 /* ================= helpers ================= */
@@ -320,7 +420,7 @@ function blocksFor(w){
   return[
     {id:"settle",min:5,t:"Settle",h:"ठहराव",d:"Phone away. Read yesterday's three भूल-बही entries aloud."},
     {id:"study",min:45,t:"CS study",h:"अध्ययन",d:P.cs[w.dow]+". Write, do not only read."},
-    {id:"mcq",min:15,t:"CS questions",h:"अभ्यास",d:"15 MCQs on today's topic, against the clock."},
+    {id:"mcq",min:15,t:"CS questions",h:"अभ्यास",d:"This week's CS set in the Practice tab first, then 15 questions from your book. Against the clock."},
     {id:"rot",min:15,t:r[0],h:"साथ में",d:r[1]},
     {id:"close",min:10,t:"Close",h:"समापन",d:"Log each wrong or guessed question. Write tomorrow's one topic on a slip."}];
 }
@@ -375,7 +475,7 @@ function tickTimer(){
   else{const el=$("#demoClock");if(el)el.textContent=fmt(left);
     const m=(T.total-left)/60000;document.querySelectorAll(".stage").forEach((s,i)=>s.classList.toggle("on",m>=STAGES[i][0]&&m<STAGES[i][1]));}
   if(left<=0){const k=T.key,kind=T.kind;T=null;clearInterval(TI);
-    if(kind==="block"){const d=todayISO();S.ticks[d]=S.ticks[d]||{};S.ticks[d][k]=true;save();toast("Block complete. शाबाश।");}
+    if(kind==="block"){const d=todayISO();S.ticks[d]=S.ticks[d]||{};S.ticks[d][k]=true;save();toast("Block complete. एक कदम और।");}
     else toast("Ten minutes. Recap should be on the board.");
     route();}
 }
@@ -394,18 +494,22 @@ function viewPlan(){
 
 /* ================= practice ================= */
 function viewPractice(){
-  const secs=["CS","Pedagogy","English","Hindi"];
-  const all=QS.map((q,i)=>Object.assign({i},q));
-  const answered=all.filter(q=>S.ans[q.i]!==undefined),right=answered.filter(q=>S.ans[q.i]===q.a).length;
-  let h='<h2 class="sec-title">Week 1 set <span lang="hi">· अभ्यास</span></h2><p class="sec-sub">'+QS.length+' questions. Answered '+answered.length+', right '+right+'. No negative marking in the exam, so never leave a blank.</p><div class="chips" role="group" aria-label="Section">'+
-    secs.map(s=>'<button class="chip" data-filter="'+s+'" aria-pressed="'+(S.filter===s)+'">'+s+' · '+all.filter(q=>q.s===s).length+'</button>').join("")+'</div><div class="stack">';
-  all.filter(q=>q.s===S.filter).forEach(q=>{const a=S.ans[q.i],done=a!==undefined;
-    h+='<div class="q"><div class="tag">'+esc(q.t)+'</div><h3>'+esc(q.q)+'</h3><div class="opts">'+
-      q.o.map((o,j)=>'<button class="opt'+(done&&j===q.a?" right":"")+(done&&j===a&&a!==q.a?" wrong":"")+'" data-q="'+q.i+'" data-o="'+j+'"'+(done?" disabled":"")+'>'+esc(o)+'</button>').join("")+'</div>';
+  const secs=["CS","Pedagogy","English","Hindi","Reasoning","Numerical","GK","Literacy"];
+  const weeks=[...new Set(QS.map(q=>q.k))];
+  let pw=S.pw||Math.max(1,where().week);if(!weeks.includes(pw))pw=weeks.filter(k=>k<=pw).pop()||weeks[0];
+  const all=QS.filter(q=>q.k===pw);
+  if(!all.some(q=>q.s===S.filter))S.filter="CS";
+  const answered=all.filter(q=>S.ans[q.id]!==undefined),right=answered.filter(q=>S.ans[q.id]===q.a).length;
+  let h='<h2 class="sec-title">Week '+pw+' set <span lang="hi">· अभ्यास</span></h2><p class="sec-sub">'+all.length+' questions. Answered '+answered.length+', right '+right+'. No negative marking in the exam, so never leave a blank.</p><div class="chips" role="group" aria-label="Week">'+
+    weeks.map(k=>'<button class="chip" data-pw="'+k+'" aria-pressed="'+(pw===k)+'">Week '+k+'</button>').join("")+'</div><div class="chips" role="group" aria-label="Section" style="margin-top:0">'+
+    secs.filter(s=>all.some(q=>q.s===s)).map(s=>'<button class="chip" data-filter="'+s+'" aria-pressed="'+(S.filter===s)+'">'+s+' · '+all.filter(q=>q.s===s).length+'</button>').join("")+'</div><div class="stack">';
+  all.filter(q=>q.s===S.filter).forEach(q=>{const a=S.ans[q.id],done=a!==undefined;
+    h+='<div class="q"><div class="tag">'+esc(q.t)+'</div><h3>'+esc(q.q)+'</h3>'+(q.c?'<pre class="code">'+esc(q.c)+'</pre>':'')+'<div class="opts">'+
+      q.o.map((o,j)=>'<button class="opt'+(done&&j===q.a?" right":"")+(done&&j===a&&a!==q.a?" wrong":"")+'" data-q="'+q.id+'" data-o="'+j+'"'+(done?" disabled":"")+'>'+esc(o)+'</button>').join("")+'</div>';
     if(done){const ok=a===q.a;h+='<p class="why'+(ok?"":" miss")+'"><b>'+(ok?"Right.":"Not this time.")+'</b> '+esc(q.w)+'</p>';
-      if(!ok)h+='<div class="row" style="margin-top:10px"><button class="btn quiet" data-tolog="'+q.i+'">'+(S.log.some(e=>e.q===q.i)?"In your भूल-बही":"Add to भूल-बही")+'</button></div>';}
+      if(!ok)h+='<div class="row" style="margin-top:10px"><button class="btn quiet" data-tolog="'+q.id+'">'+(S.log.some(e=>e.q===q.id)?"In your भूल-बही":"Add to भूल-बही")+'</button></div>';}
     h+='</div>';});
-  h+='</div><div class="row" style="margin-top:16px"><button class="btn quiet" id="resetSet">Clear my answers and try again</button></div>';
+  h+='</div><div class="row" style="margin-top:16px"><button class="btn quiet" id="resetSet" data-wk="'+pw+'">Clear my week '+pw+' answers and try again</button></div><p class="note">A new set is added before each week begins. These sets open the topic; your book and full papers complete it.</p>';
   return h;
 }
 
@@ -415,8 +519,8 @@ function chart(){
   const W=320,H=150,L=30,R=10,Tp=10,B=24,iw=W-L-R,ih=H-Tp-B,y=v=>Tp+ih-(v/100)*ih,x=i=>L+(pts.length<2?iw/2:i*iw/(pts.length-1));
   let s='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Weekly test scores in percent">';
   [0,50,100].forEach(v=>{s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="var(--rule)"/><text x="'+(L-6)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'</text>';});
-  s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(60)+'" y2="'+y(60)+'" stroke="var(--warn)" stroke-dasharray="4 4"/><text x="'+(W-R)+'" y="'+(y(60)+12)+'" text-anchor="end">60 shortlist line</text>';
-  s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(79)+'" y2="'+y(79)+'" stroke="var(--good)" stroke-dasharray="4 4"/><text x="'+(W-R)+'" y="'+(y(79)-5)+'" text-anchor="end">79 our target</text>';
+  s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(60)+'" y2="'+y(60)+'" stroke="var(--warn)" stroke-dasharray="4 4"/><text x="'+(W-R)+'" y="'+(y(60)+12)+'" text-anchor="end">60 shortlist line (54 reserved)</text>';
+  s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(79)+'" y2="'+y(79)+'" stroke="var(--good)" stroke-dasharray="4 4"/><text x="'+(W-R)+'" y="'+(y(79)-5)+'" text-anchor="end">79 = 95 of 120, our target</text>';
   if(pts.length){s+='<polyline fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round" points="'+pts.map((p,i)=>x(i)+","+y(p)).join(" ")+'"/>';
     pts.forEach((p,i)=>{const last=i===pts.length-1;s+='<circle cx="'+x(i)+'" cy="'+y(p)+'" r="'+(last?5:3.5)+'" fill="'+(last?"var(--marigold)":"var(--ink)")+'"/><text x="'+x(i)+'" y="'+(H-8)+'" text-anchor="middle">'+esc(S.scores[i].label)+'</text>';});}
   else s+='<text x="'+(L+iw/2)+'" y="'+(Tp+ih/2)+'" text-anchor="middle">Your line begins with the baseline paper.</text>';
@@ -443,7 +547,7 @@ function viewLog(){
    '<div class="card"><div class="row" style="justify-content:space-between"><b>'+open.length+' open · '+cleared+' cleared</b><button class="btn quiet" id="copySum">Copy my week</button></div><div class="bars">'+
    TYPES.map((k,i)=>'<div class="bar"><span>'+k+'</span><span><i style="width:'+(counts[i]/max*100)+'%"></i></span><span>'+counts[i]+'</span></div>').join("")+'</div><p class="note" style="margin-left:0">'+reading+'</p><textarea id="sumBox" hidden readonly aria-label="Week summary"></textarea></div>'+
    '<details class="card" style="margin-top:12px"><summary style="cursor:pointer;font-weight:600;min-height:28px">Add an entry</summary><form id="logForm">'+
-   '<label for="lSec">Section</label><select id="lSec"><option>CS</option><option>Pedagogy</option><option>English</option><option>Hindi</option><option>Reasoning</option><option>Numerical</option><option>GK</option></select>'+
+   '<label for="lSec">Section</label><select id="lSec"><option>CS</option><option>Pedagogy</option><option>English</option><option>Hindi</option><option>Reasoning</option><option>Numerical</option><option>GK</option><option>Computer literacy</option></select>'+
    '<label for="lTopic">Topic</label><input type="text" id="lTopic" required placeholder="e.g. Boolean logic">'+
    '<label for="lType">What kind of mistake</label><select id="lType">'+TYPES.map(k=>'<option value="'+k+'">'+k+' ('+TYPEHELP[k]+')</option>').join("")+'</select>'+
    '<label for="lRests">What the right answer rests on</label><textarea id="lRests" placeholder="One line in your own words"></textarea>'+
@@ -457,7 +561,8 @@ function viewLog(){
      '<div class="row" style="margin-top:10px"><select data-type="'+e.id+'" aria-label="Mistake type" style="width:auto;flex:1">'+TYPES.map(k=>'<option'+(k===e.type?" selected":"")+'>'+k+'</option>').join("")+'</select><button class="btn quiet" data-right="'+e.id+'">Got it right</button><button class="btn quiet" data-del="'+e.id+'" aria-label="Delete entry">Delete</button></div></div>';});
   h+='</div><h2 class="sec-title">Progress line <span lang="hi">· चढ़ती रेखा</span></h2><p class="sec-sub">One point for the baseline, then one each Sunday.</p><div class="card">'+chart()+
    '<form id="scoreForm" class="row" style="margin-top:10px;align-items:flex-end"><div style="flex:1.2;min-width:90px"><label for="sLabel">Test</label><input type="text" id="sLabel" required placeholder="Base, W1…" maxlength="6"></div><div style="flex:1;min-width:70px"><label for="sGot">Marks</label><input type="number" id="sGot" required min="0" max="120" inputmode="numeric"></div><div style="flex:1;min-width:70px"><label for="sOf">Out of</label><select id="sOf"><option>60</option><option>120</option></select></div><button class="btn" type="submit">Add</button></form>'+
-   (S.scores.length?'<div class="row" style="margin-top:10px"><button class="btn quiet" id="undoScore">Remove last point</button></div>':'')+'</div>';
+   (S.scores.length?'<div class="row" style="margin-top:10px"><button class="btn quiet" id="undoScore">Remove last point</button></div>':'')+'</div>'+
+   '<h2 class="sec-title">Keep a copy <span lang="hi">· सँभाल कर</span></h2><p class="sec-sub">Your work lives only in this browser on this phone. Copy it once a week, so a new phone or a cleared browser costs you nothing.</p><div class="card"><div class="row"><button class="btn quiet" id="bkCopy">Copy my data</button><button class="btn quiet" id="bkOpen">Restore from a copy</button></div><textarea id="bkBox" hidden aria-label="Saved copy" style="margin-top:10px"></textarea><div class="row" style="margin-top:10px"><button class="btn" id="bkLoad" hidden>Load this copy</button></div></div>';
   return h;
 }
 
@@ -466,7 +571,7 @@ function viewDemo(){
   const w=where(),wk=Math.max(1,w.week),P=PLAN[wk-1],r=S.rubric[wk]||{};
   const total=RUBRIC.reduce((a,_,i)=>a+(r[i]||0),0),filled=RUBRIC.filter((_,i)=>r[i]).length;
   const run=T&&T.kind==="demo";
-  let h='<h2 class="sec-title">Demo lesson <span lang="hi">· बोर्ड पर दस मिनट</span></h2><p class="sec-sub">The skill test is ten minutes of teaching at a chalkboard. Practise it every Sunday so the board becomes familiar ground.</p>'+
+  let h='<h2 class="sec-title">Demo lesson <span lang="hi">· बोर्ड पर दस मिनट</span></h2><p class="sec-sub">The skill test is teaching at a chalkboard, marked Go or No Go. The written score decides the rank; the board decides whether that score counts. Its length is not announced, so we practise ten minutes every Sunday until the board is familiar ground.</p>'+
    '<div class="card"><div class="small" style="color:var(--muted);font-size:13px;letter-spacing:.1em;text-transform:uppercase">Week '+wk+' topic</div><h3 style="font-family:var(--display);font-size:22px;margin:2px 0 12px">'+esc(P.demo)+'</h3>'+
    '<div class="row" style="justify-content:space-between"><div class="bigclock" id="demoClock">'+(run?"…":"10:00")+'</div><button class="btn '+(run?"quiet":"gold")+'" id="demoBtn">'+(run?"Stop":"Start 10 minutes")+'</button></div></div>'+
    '<div class="stack" style="margin-top:12px">'+STAGES.map(s=>'<div class="stage"><div class="min">'+s[0]+' to '+s[1]+' min</div><div><b>'+s[2]+'</b><div style="color:var(--muted);font-size:14.5px">'+s[3]+'</div></div></div>').join("")+'</div>'+
@@ -493,8 +598,13 @@ document.addEventListener("click",e=>{
   else if(d.start){if(T&&T.key===d.start)stopTimer();else startTimer(d.start,Number(d.min),"block");}
   else if(d.filter){S.filter=d.filter;save();route();}
   else if(d.q!==undefined&&d.o!==undefined){S.ans[d.q]=Number(d.o);save();route();}
-  else if(d.tolog!==undefined){const i=Number(d.tolog),q=QS[i];if(!S.log.some(x=>x.q===i)){addEntry(q.s,q.t,"Concept gap",q.w,i);toast("Added. Choose the mistake type in your भूल-बही.");}route();}
-  else if(b.id==="resetSet"){S.ans={};save();route();}
+  else if(d.pw){S.pw=Number(d.pw);save();route();window.scrollTo(0,0);}
+  else if(d.tolog!==undefined){const i=d.tolog,q=QS.find(x=>x.id===i);if(q&&!S.log.some(x=>x.q===i)){addEntry(q.s==="Literacy"?"Computer literacy":q.s,q.t,"Concept gap",q.w,i);toast("Added. Choose the mistake type in your भूल-बही.");}route();}
+  else if(b.id==="resetSet"){QS.forEach(q=>{if(q.k===Number(d.wk))delete S.ans[q.id];});save();route();}
+  else if(b.id==="bkCopy"){const t=JSON.stringify(S);const box=$("#bkBox");const show=()=>{box.hidden=false;box.readOnly=true;box.value=t;box.select();toast("Select and copy the text below. Keep it somewhere safe.");};
+    try{navigator.clipboard.writeText(t).then(()=>toast("Copied. Paste it into a note or a message to yourself."),show);}catch(err){show();}}
+  else if(b.id==="bkOpen"){const box=$("#bkBox");box.hidden=false;box.readOnly=false;box.value="";box.placeholder="Paste your saved copy here";$("#bkLoad").hidden=false;box.focus();}
+  else if(b.id==="bkLoad"){try{const o=JSON.parse($("#bkBox").value);if(!o||typeof o!=="object"||!o.ticks||!Array.isArray(o.log))throw 0;S=Object.assign(S,o);save();toast("Restored. सब कुछ वापस आ गया।");route();}catch(err){toast("That text is not a saved copy. Paste the whole of it.");}}
   else if(d.right){const en=S.log.find(x=>x.id===d.right);if(en){en.right++;const n=new Date();n.setDate(n.getDate()+7);en.retest=iso(n);save();toast(en.right>=2?"Cleared. यह अब आपका है।":"Once more next week, then it is cleared.");route();}}
   else if(d.del){S.log=S.log.filter(x=>x.id!==d.del);save();route();}
   else if(b.id==="copySum"){const t=summaryText();const box=$("#sumBox");
